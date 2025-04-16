@@ -31,6 +31,7 @@ def is_blue_detected(color_sensor):
     red, green, blue = color_sensor.rgb()
     blue_intensity = blue / (red + green)
 
+    print("works")
     return blue_intensity > blue_ratio_threshold
 
 
