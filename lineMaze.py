@@ -58,9 +58,9 @@ def turn(image_array):
     count_left = np.sum(left_half == 23)
     count_right = np.sum(right_half == 23)
 
-    if count_right < count_left:
+    if count_left > count_right:
         return 0  # Turn left
-    elif count_left < count_right:
+    elif count_right > count_left:
         return 2 # Turn right
     # else:
     #     return 4
