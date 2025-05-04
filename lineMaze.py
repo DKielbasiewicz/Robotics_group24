@@ -50,6 +50,8 @@ def turn(image_array):
     # First, check if all values in the array are 23
     if (image_array == 23).all():
         return 1
+    elif (image_array == 0).all():
+        return 1
 
     # Now count how many 23s are on left half vs right half
     left_half = image_array[:, :8, :]
@@ -59,17 +61,15 @@ def turn(image_array):
     count_right = np.sum(right_half == 23)
 
     if count_left > count_right:
-        if turn left slow:
-            return 0.1
-        elif turn left fast:
-            return 0.2  # Turn left
+        if count_left < 64:
+            return 0.2 # turn left faster, increase the speed in the right wheel
+        else:
+            return 0.1  # Turn left slower, 
     elif count_right > count_left:
-        if turn right slow:
-            return 2.1
-        elif turn right fast:
-            return 2.2  # Turn right
-    # else:
-    #     return 4
+        if count_right < 64:
+            return 2.2 # Turn right faster
+        else:
+            return 2.1  # Turn right slower
 
 def follow_line():
     """
@@ -88,16 +88,16 @@ def follow_line():
 
     elif turn_decision == 0.1:
         right_motor.run(speed=0.5)
-        left_motor.run(speed=3)
+        left_motor.run(speed=4.3)
     elif turn_decision == 0.2:
         right_motor.run(speed=0)
-        left_motor.run(speed=4)
+        left_motor.run(speed=4.5)
 
     elif turn_decision == 2.1:
-        right_motor.run(speed=3)
+        right_motor.run(speed=4.3)
         left_motor.run(speed=0.5)
     elif turn_decision == 2.2:
-        right_motor.run(speed=4)
+        right_motor.run(speed=4.5)
         left_motor.run(speed=0)
     # elif turn_decision == 4:
     #     left_motor.run(speed=3)
@@ -109,4 +109,6 @@ sim.startSimulation()
 
 # MAIN CONTROL LOOP
 while True:
+    # image = color_sensor.get_image()
+    # show_image(image)
     follow_line()
