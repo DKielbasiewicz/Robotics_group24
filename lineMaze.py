@@ -80,11 +80,11 @@ def follow_line():
         left_motor.run(speed=5)
         right_motor.run(speed=5)
     elif turn_decision == 0:
-        right_motor.run(speed=5)
-        left_motor.run(speed=0.5)
-    elif turn_decision == 2:
-        left_motor.run(speed=5)
         right_motor.run(speed=0.5)
+        left_motor.run(speed=3)
+    elif turn_decision == 2:
+        right_motor.run(speed=3)
+        left_motor.run(speed=0.5)
     # elif turn_decision == 4:
     #     left_motor.run(speed=3)
     #     right_motor.run(speed=0)
