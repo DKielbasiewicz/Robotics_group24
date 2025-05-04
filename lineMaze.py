@@ -59,9 +59,15 @@ def turn(image_array):
     count_right = np.sum(right_half == 23)
 
     if count_left > count_right:
-        return 0  # Turn left
+        if turn left slow:
+            return 0.1
+        elif turn left fast:
+            return 0.2  # Turn left
     elif count_right > count_left:
-        return 2 # Turn right
+        if turn right slow:
+            return 2.1
+        elif turn right fast:
+            return 2.2  # Turn right
     # else:
     #     return 4
 
@@ -79,12 +85,20 @@ def follow_line():
     if turn_decision == 1:
         left_motor.run(speed=5)
         right_motor.run(speed=5)
-    elif turn_decision == 0:
+
+    elif turn_decision == 0.1:
         right_motor.run(speed=0.5)
         left_motor.run(speed=3)
-    elif turn_decision == 2:
+    elif turn_decision == 0.2:
+        right_motor.run(speed=0)
+        left_motor.run(speed=4)
+
+    elif turn_decision == 2.1:
         right_motor.run(speed=3)
         left_motor.run(speed=0.5)
+    elif turn_decision == 2.2:
+        right_motor.run(speed=4)
+        left_motor.run(speed=0)
     # elif turn_decision == 4:
     #     left_motor.run(speed=3)
     #     right_motor.run(speed=0)
